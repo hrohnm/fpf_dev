@@ -5,6 +5,20 @@ export enum UserRole {
   LEADERSHIP = 'leadership',
 }
 
+export interface Carrier {
+  id: string;
+  name: string;
+  description?: string;
+  contactPerson?: string;
+  email?: string;
+  phone?: string;
+  website?: string;
+  address?: string;
+  isActive?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -14,6 +28,8 @@ export interface User {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  carrierId?: string;
+  Carriers?: Carrier[];
 }
 
 export interface AuthState {

@@ -17,6 +17,7 @@
     "no": "Nein",
     "back": "Zurück",
     "next": "Weiter",
+    "previous": "Zurück",
     "submit": "Absenden",
     "close": "Schließen",
     "confirm": "Bestätigen",
@@ -29,7 +30,12 @@
     "details": "Details",
     "more": "Mehr",
     "less": "Weniger",
-    "comingSoon": "Demnächst verfügbar"
+    "comingSoon": "Demnächst verfügbar",
+    "create": "Erstellen",
+    "showing": "Zeige",
+    "to": "bis",
+    "of": "von",
+    "results": "Ergebnissen"
   },
   "auth": {
     "login": "Anmelden",
@@ -92,16 +98,66 @@
     },
     "users": {
       "title": "Benutzerverwaltung",
-      "description": "Hier können Sie alle Benutzer des Systems verwalten."
-    },
-    "carriers": {
-      "title": "Trägerverwaltung",
-      "description": "Hier können Sie alle Träger und deren Einrichtungen verwalten."
+      "description": "Hier können Sie alle Benutzer des Systems verwalten.",
+      "createUser": "Benutzer erstellen",
+      "editUser": "Benutzer bearbeiten",
+      "deleteUser": "Benutzer löschen",
+      "createUserDescription": "Hier können Sie einen neuen Benutzer erstellen.",
+      "editUserDescription": "Hier können Sie die Daten eines Benutzers bearbeiten.",
+      "deleteTitle": "Benutzer löschen",
+      "deleteMessage": "Sind Sie sicher, dass Sie den Benutzer {{name}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "createSuccess": "Benutzer wurde erfolgreich erstellt.",
+      "updateSuccess": "Benutzer wurde erfolgreich aktualisiert.",
+      "deleteSuccess": "Benutzer wurde erfolgreich gelöscht.",
+      "fetchError": "Fehler beim Laden der Benutzer.",
+      "saveError": "Fehler beim Speichern des Benutzers.",
+      "deleteError": "Fehler beim Löschen des Benutzers.",
+      "allRoles": "Alle Rollen",
+      "allStatuses": "Alle Status",
+      "leaveEmptyToKeep": "Leer lassen, um beizubehalten",
+      "noUsers": "Keine Benutzer gefunden.",
+      "selectCarrier": "Träger auswählen"
     },
     "categories": {
       "title": "Kategorieverwaltung",
-      "description": "Hier können Sie alle Kategorien nach SGB VIII verwalten."
+      "description": "Hier können Sie alle Kategorien für Angebote verwalten.",
+      "createCategory": "Kategorie erstellen",
+      "editCategory": "Kategorie bearbeiten",
+      "deleteCategory": "Kategorie löschen",
+      "createCategoryDescription": "Hier können Sie eine neue Kategorie erstellen.",
+      "editCategoryDescription": "Hier können Sie die Daten einer Kategorie bearbeiten.",
+      "deleteTitle": "Kategorie löschen",
+      "deleteMessage": "Sind Sie sicher, dass Sie die Kategorie {{name}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "createSuccess": "Kategorie wurde erfolgreich erstellt.",
+      "updateSuccess": "Kategorie wurde erfolgreich aktualisiert.",
+      "deleteSuccess": "Kategorie wurde erfolgreich gelöscht.",
+      "fetchError": "Fehler beim Laden der Kategorien.",
+      "saveError": "Fehler beim Speichern der Kategorie.",
+      "deleteError": "Fehler beim Löschen der Kategorie.",
+      "allStatuses": "Alle Status",
+      "allUnitTypes": "Alle Einheitentypen",
+      "noCategories": "Keine Kategorien gefunden."
     },
+    "carriers": {
+      "title": "Trägerverwaltung",
+      "description": "Hier können Sie alle Träger und deren Einrichtungen verwalten.",
+      "createCarrier": "Träger erstellen",
+      "editCarrier": "Träger bearbeiten",
+      "deleteCarrier": "Träger löschen",
+      "createCarrierDescription": "Hier können Sie einen neuen Träger erstellen.",
+      "editCarrierDescription": "Hier können Sie die Daten eines Trägers bearbeiten.",
+      "deleteTitle": "Träger löschen",
+      "deleteMessage": "Sind Sie sicher, dass Sie den Träger {{name}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "createSuccess": "Träger wurde erfolgreich erstellt.",
+      "updateSuccess": "Träger wurde erfolgreich aktualisiert.",
+      "deleteSuccess": "Träger wurde erfolgreich gelöscht.",
+      "fetchError": "Fehler beim Laden der Träger.",
+      "saveError": "Fehler beim Speichern des Trägers.",
+      "deleteError": "Fehler beim Löschen des Trägers.",
+      "allStatuses": "Alle Status",
+      "noCarriers": "Keine Träger gefunden."
+    },
+
     "settings": {
       "title": "Systemeinstellungen",
       "description": "Hier können Sie grundlegende Systemeinstellungen vornehmen."
@@ -180,7 +236,11 @@
     "website": "Website",
     "logo": "Logo",
     "isActive": "Aktiv",
-    "facilities": "Einrichtungen",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "status": "Status",
+    "facilitiesCount": "Einrichtungen",
+    "viewFacilities": "Einrichtungen anzeigen",
     "addCarrier": "Träger hinzufügen",
     "editCarrier": "Träger bearbeiten",
     "deleteCarrier": "Träger löschen",
@@ -192,7 +252,7 @@
       "welcome": "Willkommen, {{name}}",
       "overview": "Hier finden Sie eine Übersicht über Ihre Einrichtungen und Verfügbarkeiten."
     },
-    "facilities": {
+    "facilitiesSection": {
       "title": "Einrichtungen",
       "description": "Hier können Sie Ihre Einrichtungen verwalten.",
       "new": "Neue Einrichtung",
@@ -213,23 +273,42 @@
     "description": "Beschreibung",
     "code": "Code",
     "isActive": "Aktiv",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "status": "Status",
+    "unitType": "Einheitentyp",
+    "parentCategory": "Übergeordnete Kategorie",
+    "noParent": "Keine übergeordnete Kategorie",
     "addCategory": "Kategorie hinzufügen",
     "editCategory": "Kategorie bearbeiten",
     "deleteCategory": "Kategorie löschen",
-    "categoryDetails": "Kategoriedetails"
+    "categoryDetails": "Kategoriedetails",
+    "unitTypes": {
+      "places": "Plätze",
+      "hours": "Stunden"
+    },
+    "unitTypeDescriptions": {
+      "places": "Diese Kategorie wird mit Plätzen genutzt (z.B. für stationäre Angebote).",
+      "hours": "Diese Kategorie wird mit Stunden genutzt (z.B. für ambulante Angebote)."
+    }
   },
   "user": {
     "email": "E-Mail",
     "firstName": "Vorname",
     "lastName": "Nachname",
+    "name": "Name",
     "role": "Rolle",
     "isActive": "Aktiv",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "status": "Status",
     "lastLogin": "Letzte Anmeldung",
     "createdAt": "Erstellt am",
     "updatedAt": "Aktualisiert am",
     "password": "Passwort",
     "confirmPassword": "Passwort bestätigen",
     "carrier": "Träger",
+    "noCarrierAssigned": "Kein Träger zugewiesen",
     "addUser": "Benutzer hinzufügen",
     "editUser": "Benutzer bearbeiten",
     "deleteUser": "Benutzer löschen",
@@ -274,5 +353,22 @@
     "validationError": "Validierungsfehler",
     "duplicateEntry": "Eintrag existiert bereits",
     "networkError": "Netzwerkfehler, bitte überprüfen Sie Ihre Internetverbindung"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "minLength": "Dieses Feld muss mindestens {{min}} Zeichen lang sein",
+    "maxLength": "Dieses Feld darf höchstens {{max}} Zeichen lang sein",
+    "passwordMatch": "Die Passwörter stimmen nicht überein",
+    "passwordLength": "Das Passwort muss mindestens 8 Zeichen lang sein",
+    "number": "Bitte geben Sie eine Zahl ein",
+    "integer": "Bitte geben Sie eine ganze Zahl ein",
+    "positive": "Bitte geben Sie eine positive Zahl ein",
+    "url": "Bitte geben Sie eine gültige URL ein",
+    "date": "Bitte geben Sie ein gültiges Datum ein",
+    "phone": "Bitte geben Sie eine gültige Telefonnummer ein",
+    "postalCode": "Bitte geben Sie eine gültige Postleitzahl ein",
+    "invalidRole": "Bitte wählen Sie eine gültige Rolle aus",
+    "carrierRequired": "Für Benutzer mit der Rolle 'Träger' muss ein Träger ausgewählt werden"
   }
 }
