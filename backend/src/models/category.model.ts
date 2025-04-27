@@ -6,21 +6,25 @@ export interface CategoryAttributes {
   id: string;
   name: string;
   description?: string;
+  code?: string;
   unitType: 'places' | 'hours'; // 'places' für Plätze, 'hours' für Stunden
+  parentId?: string | null;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
 
 // Category creation attributes interface (optional fields for creation)
-export interface CategoryCreationAttributes extends Optional<CategoryAttributes, 'id' | 'description' | 'isActive' | 'createdAt' | 'updatedAt'> {}
+export interface CategoryCreationAttributes extends Optional<CategoryAttributes, 'id' | 'description' | 'code' | 'parentId' | 'isActive' | 'createdAt' | 'updatedAt'> {}
 
 // Category model class
 export class Category extends Model<CategoryAttributes, CategoryCreationAttributes> implements CategoryAttributes {
   public id!: string;
   public name!: string;
   public description?: string;
+  public code?: string;
   public unitType!: 'places' | 'hours';
+  public parentId?: string | null;
   public isActive!: boolean;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -42,10 +46,24 @@ Category.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    code: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     unitType: {
       type: DataTypes.ENUM('places', 'hours'),
       allowNull: false,
       defaultValue: 'places',
+    },
+    parentId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: 'categories',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
     },
     isActive: {
       type: DataTypes.BOOLEAN,
@@ -72,7 +90,16 @@ Category.init(
         fields: ['name'],
       },
       {
+        fields: ['code'],
+      },
+      {
         fields: ['unitType'],
+      },
+      {
+        fields: ['parentId'],
+      },
+      {
+        fields: ['isActive'],
       },
     ],
   }

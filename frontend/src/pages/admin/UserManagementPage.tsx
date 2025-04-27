@@ -112,13 +112,22 @@ const UserManagementPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Prepare data for API
+      const userData = { ...values };
+
+      // Convert carrierId to carrierIds array if present
+      if (userData.carrierId) {
+        userData.carrierIds = [userData.carrierId];
+        delete userData.carrierId;
+      }
+
       if (selectedUser) {
         // Update existing user
-        await updateUser(selectedUser.id, values);
+        await updateUser(selectedUser.id, userData);
         showSuccess(t('admin.users.updateSuccess'));
       } else {
         // Create new user
-        await createUser(values);
+        await createUser(userData);
         showSuccess(t('admin.users.createSuccess'));
       }
 

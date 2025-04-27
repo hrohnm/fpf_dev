@@ -6,6 +6,7 @@ import availabilityRoutes from './availability.routes';
 import imagesRoutes from './images.routes';
 import statisticsRoutes from './statistics.routes';
 import dashboardRoutes from './dashboard.routes';
+import categoryRoutes from './category.routes';
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use('/facilities', facilitiesRoutes);
 router.use('/availability', availabilityRoutes);
 router.use('/images', imagesRoutes);
 router.use('/statistics', statisticsRoutes);
+router.use('/categories', categoryRoutes);
 
 export default router;

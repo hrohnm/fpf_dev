@@ -44,7 +44,7 @@ export interface CategoryFilters {
 export const getCategories = async (filters: CategoryFilters = {}): Promise<CategoryListResponse> => {
   // Konvertiere Filter in Query-String
   const queryParams = new URLSearchParams();
-  
+
   if (filters.page) queryParams.append('page', filters.page.toString());
   if (filters.limit) queryParams.append('limit', filters.limit.toString());
   if (filters.search) queryParams.append('search', filters.search);
@@ -53,10 +53,10 @@ export const getCategories = async (filters: CategoryFilters = {}): Promise<Cate
   if (filters.unitType) queryParams.append('unitType', filters.unitType);
   if (filters.sortBy) queryParams.append('sortBy', filters.sortBy);
   if (filters.sortOrder) queryParams.append('sortOrder', filters.sortOrder);
-  
+
   const queryString = queryParams.toString();
   const endpoint = `/admin/categories${queryString ? `?${queryString}` : ''}`;
-  
+
   return api.get<CategoryListResponse>(endpoint);
 };
 
@@ -64,7 +64,13 @@ export const getCategories = async (filters: CategoryFilters = {}): Promise<Cate
  * Alle Kategorien ohne Paginierung abrufen (für Dropdowns)
  */
 export const getAllCategories = async (): Promise<Category[]> => {
-  return api.get<Category[]>('/admin/categories/all');
+  // Versuche zuerst den Carrier-Endpunkt, falls der Benutzer ein Carrier ist
+  try {
+    return api.get<Category[]>('/carrier/categories/all');
+  } catch (error) {
+    // Fallback auf Admin-Endpunkt, falls der Carrier-Endpunkt nicht verfügbar ist
+    return api.get<Category[]>('/admin/categories/all');
+  }
 };
 
 /**

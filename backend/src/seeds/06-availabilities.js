@@ -12,7 +12,7 @@ module.exports = {
 
     // Get categories
     const categories = await queryInterface.sequelize.query(
-      `SELECT id FROM categories WHERE parentId IS NOT NULL`,
+      `SELECT id FROM categories WHERE "parentId" IS NOT NULL`,
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     );
 

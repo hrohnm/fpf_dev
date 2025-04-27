@@ -1,26 +1,26 @@
 import { Router } from 'express';
+import {
+  getAvailabilities,
+  getAvailabilityById,
+  createAvailability,
+  updateAvailability,
+  deleteAvailability,
+  bulkUpdateAvailabilities
+} from '../../controllers/carrier/availability.controller';
+import { validate } from '../../middlewares/validation.middleware';
+import { carrierAccessMiddleware } from '../../middlewares/carrier-access.middleware';
 
 const router = Router();
 
-// Placeholder routes
-router.get('/', (req, res) => {
-  res.json({ message: 'Get all availabilities' });
-});
+// Apply carrier access middleware to all availability routes
+router.use(carrierAccessMiddleware);
 
-router.get('/:id', (req, res) => {
-  res.json({ message: `Get availability with ID: ${req.params.id}` });
-});
-
-router.post('/', (req, res) => {
-  res.json({ message: 'Create availability', data: req.body });
-});
-
-router.put('/:id', (req, res) => {
-  res.json({ message: `Update availability with ID: ${req.params.id}`, data: req.body });
-});
-
-router.delete('/:id', (req, res) => {
-  res.json({ message: `Delete availability with ID: ${req.params.id}` });
-});
+// Availability routes
+router.get('/', getAvailabilities);
+router.get('/:id', getAvailabilityById);
+router.post('/', createAvailability);
+router.put('/:id', updateAvailability);
+router.delete('/:id', deleteAvailability);
+router.put('/bulk/update', bulkUpdateAvailabilities);
 
 export default router;

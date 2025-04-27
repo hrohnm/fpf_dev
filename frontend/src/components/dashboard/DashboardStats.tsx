@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Card from '../ui/Card';
 import { get } from '../../utils/api';
+import { useAuth } from '../../hooks/useAuth';
 
 interface DashboardData {
   totalFacilities: number;
-  totalCarriers: number;
+  totalCarriers?: number; // Optional for carrier dashboard
   totalAvailablePlaces: number;
   occupancyRate: number;
   recentUpdates: {
@@ -20,6 +21,7 @@ interface DashboardData {
 
 const DashboardStats: React.FC = () => {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,8 +29,15 @@ const DashboardStats: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Use the API utility to fetch dashboard data
-        const result = await get<DashboardData>('/admin/dashboard');
+        // Use the API utility to fetch dashboard data based on user role
+        let endpoint = '/admin/dashboard';
+
+        // If user is a carrier, use the carrier dashboard endpoint
+        if (user?.role === 'carrier') {
+          endpoint = '/carrier/dashboard';
+        }
+
+        const result = await get<DashboardData>(endpoint);
         setData(result);
       } catch (err) {
         setError('Failed to fetch dashboard data');
@@ -39,7 +48,7 @@ const DashboardStats: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [user?.role]);
 
   if (loading) {
     return (
@@ -87,27 +96,30 @@ const DashboardStats: React.FC = () => {
           </div>
         </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 bg-primary-100 rounded-md p-3">
-              <svg className="h-6 w-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
+        {/* Only show total carriers for admin users */}
+        {user?.role === 'admin' && (
+          <Card className="p-6">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 bg-primary-100 rounded-md p-3">
+                <svg className="h-6 w-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div className="ml-5 w-0 flex-1">
+                <dl>
+                  <dt className="text-sm font-medium text-gray-500 truncate">
+                    {t('dashboard.totalCarriers')}
+                  </dt>
+                  <dd>
+                    <div className="text-lg font-medium text-gray-900">
+                      {data.totalCarriers}
+                    </div>
+                  </dd>
+                </dl>
+              </div>
             </div>
-            <div className="ml-5 w-0 flex-1">
-              <dl>
-                <dt className="text-sm font-medium text-gray-500 truncate">
-                  {t('dashboard.totalCarriers')}
-                </dt>
-                <dd>
-                  <div className="text-lg font-medium text-gray-900">
-                    {data.totalCarriers}
-                  </div>
-                </dd>
-              </dl>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        )}
 
         <Card className="p-6">
           <div className="flex items-center">
