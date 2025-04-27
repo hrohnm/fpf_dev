@@ -2,8 +2,6 @@
 
 Eine mobile-optimierte Webapp zur Verwaltung und Suche von freien Plätzen und Stunden in Jugendhilfeeinrichtungen nach SGB VIII.
 
-![Freiplatzfinder Dashboard](frontend/src/assets/images/design/design.jpg)
-
 ## Projektübersicht
 
 Freiplatzfinder bietet vier Benutzerrollen mit unterschiedlichen Berechtigungen und Funktionen:
