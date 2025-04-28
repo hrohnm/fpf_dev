@@ -9,7 +9,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   onChange?: (value: string) => void;
 }
 
-const Select: React.FC<SelectProps> = ({
+export const Select: React.FC<SelectProps> = ({
   error,
   label,
   helperText,

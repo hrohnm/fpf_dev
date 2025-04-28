@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import Button from './Button';
+import { Button } from './Button';
 
 interface ConfirmDialogProps {
   isOpen: boolean;
@@ -14,7 +14,7 @@ interface ConfirmDialogProps {
   variant?: 'danger' | 'warning' | 'info';
 }
 
-const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
+export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   isOpen,
   onClose,
   onConfirm,

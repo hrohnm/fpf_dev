@@ -78,7 +78,8 @@
     "statistics": "Statistiken",
     "logs": "Logs",
     "help": "Hilfe",
-    "availabilities": "Verfügbarkeiten"
+    "availabilities": "Verfügbarkeiten",
+    "places": "Plätze"
   },
   "dashboard": {
     "welcome": "Willkommen bei Freiplatzfinder",
@@ -369,6 +370,56 @@
     "phone": "Bitte geben Sie eine gültige Telefonnummer ein",
     "postalCode": "Bitte geben Sie eine gültige Postleitzahl ein",
     "invalidRole": "Bitte wählen Sie eine gültige Rolle aus",
-    "carrierRequired": "Für Benutzer mit der Rolle 'Träger' muss ein Träger ausgewählt werden"
+    "carrierRequired": "Für Benutzer mit der Rolle 'Träger' muss ein Träger ausgewählt werden",
+    "minValue": "Der Wert muss mindestens {{value}} sein",
+    "maxValue": "Der Wert darf höchstens {{value}} sein",
+    "minAgeLessThanMax": "Das Mindestalter muss kleiner als das Höchstalter sein"
+  },
+  "place": {
+    "management": "Platzverwaltung",
+    "list": "Platzliste",
+    "listDescription": "Hier sehen Sie alle Plätze für die Einrichtung {{facility}}.",
+    "capacityInfo": "Aktuelle Belegung: {{current}} von {{max}} Plätzen",
+    "addPlace": "Platz hinzufügen",
+    "editPlace": "Platz bearbeiten",
+    "deletePlace": "Platz löschen",
+    "deleteTitle": "Platz löschen",
+    "deleteMessage": "Sind Sie sicher, dass Sie den Platz {{name}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "name": "Name",
+    "category": "Kategorie",
+    "status": "Status",
+    "occupied": "Belegt",
+    "available": "Frei",
+    "markOccupied": "Als belegt markieren",
+    "markAvailable": "Als frei markieren",
+    "genderSuitability": {
+      "label": "Geschlechtereignung",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "all": "Alle"
+    },
+    "changeGender": "Geschlecht ändern",
+    "minAge": "Mindestalter",
+    "maxAge": "Höchstalter",
+    "ageRange": "Alter: {{min}}-{{max}} Jahre",
+    "notes": "Notizen",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "createSuccess": "Platz wurde erfolgreich erstellt.",
+    "updateSuccess": "Platz wurde erfolgreich aktualisiert.",
+    "deleteSuccess": "Platz wurde erfolgreich gelöscht.",
+    "markedOccupied": "Platz wurde als belegt markiert.",
+    "markedAvailable": "Platz wurde als frei markiert.",
+    "genderSuitabilityUpdated": "Geschlechtereignung wurde aktualisiert.",
+    "noPlaces": "Keine Plätze gefunden.",
+    "selectFacility": "Bitte wählen Sie eine Einrichtung aus, um deren Plätze zu verwalten.",
+    "noFilterResults": "Keine Plätze gefunden, die den Filterkriterien entsprechen.",
+    "errors": {
+      "loadFailed": "Fehler beim Laden der Plätze.",
+      "saveFailed": "Fehler beim Speichern des Platzes.",
+      "deleteFailed": "Fehler beim Löschen des Platzes.",
+      "updateFailed": "Fehler beim Aktualisieren des Platzes.",
+      "maxCapacityReached": "Die maximale Kapazität von {{maxCapacity}} Plätzen wurde erreicht.",
+      "selectFacility": "Bitte wählen Sie zuerst eine Einrichtung aus."
+    }
   }
 }

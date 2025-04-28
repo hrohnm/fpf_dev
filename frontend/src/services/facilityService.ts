@@ -80,7 +80,7 @@ export interface FacilityFilters {
 export const getFacilities = async (filters: FacilityFilters = {}): Promise<FacilityListResponse> => {
   // Konvertiere Filter in Query-String
   const queryParams = new URLSearchParams();
-  
+
   if (filters.page) queryParams.append('page', filters.page.toString());
   if (filters.limit) queryParams.append('limit', filters.limit.toString());
   if (filters.search) queryParams.append('search', filters.search);
@@ -90,10 +90,10 @@ export const getFacilities = async (filters: FacilityFilters = {}): Promise<Faci
   if (filters.isActive !== undefined) queryParams.append('isActive', filters.isActive.toString());
   if (filters.sortBy) queryParams.append('sortBy', filters.sortBy);
   if (filters.sortOrder) queryParams.append('sortOrder', filters.sortOrder);
-  
+
   const queryString = queryParams.toString();
   const endpoint = `/carrier/facilities${queryString ? `?${queryString}` : ''}`;
-  
+
   return api.get<FacilityListResponse>(endpoint);
 };
 
@@ -125,10 +125,12 @@ export const deleteFacility = async (id: string): Promise<void> => {
   return api.delete(`/carrier/facilities/${id}`);
 };
 
-export default {
+export const facilityService = {
   getFacilities,
   getFacilityById,
   createFacility,
   updateFacility,
   deleteFacility,
 };
+
+export default facilityService;

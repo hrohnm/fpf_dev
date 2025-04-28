@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import CarrierLayout from '../../components/layout/CarrierLayout';
-import Button from '../../components/ui/Button';
-import Card from '../../components/ui/Card';
-import Select from '../../components/ui/Select';
-import Input from '../../components/ui/Input';
-import ConfirmDialog from '../../components/ui/ConfirmDialog';
-import { Availability, getAvailabilities, deleteAvailability, bulkUpdateAvailabilities, AvailabilityFilters, BulkUpdateItem } from '../../services/availabilityService';
-import { Facility, getFacilities } from '../../services/facilityService';
-import { Category, getAllCategories } from '../../services/categoryService';
+import { Button } from '../../components/ui/Button';
+import { Card } from '../../components/ui/Card';
+import { Select } from '../../components/ui/Select';
+import { Input } from '../../components/ui/Input';
+import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
+import { Availability, AvailabilityFilters, BulkUpdateItem } from '../../services/availabilityService';
+import { availabilityService } from '../../services/availabilityService';
+import { Facility } from '../../services/facilityService';
+import { facilityService } from '../../services/facilityService';
+import { Category } from '../../services/categoryService';
+import { categoryService } from '../../services/categoryService';
 import { useNotification } from '../../hooks/useNotification';
 import { GenderSuitability } from '../../types/carrier.types';
 
@@ -39,8 +42,8 @@ const AvailabilityPage: React.FC = () => {
     const fetchData = async () => {
       try {
         const [facilitiesResponse, categoriesResponse] = await Promise.all([
-          getFacilities({ limit: 100 }),
-          getAllCategories(),
+          facilityService.getFacilities({ limit: 100 }),
+          categoryService.getAllCategories(),
         ]);
 
         setFacilities(facilitiesResponse.data);
@@ -68,7 +71,7 @@ const AvailabilityPage: React.FC = () => {
         sortOrder: 'desc',
       };
 
-      const response = await getAvailabilities(filters);
+      const response = await availabilityService.getAvailabilities(filters);
       setAvailabilities(response.data);
       setTotalPages(response.meta.totalPages);
       setTotalAvailabilities(response.meta.total);
@@ -122,7 +125,7 @@ const AvailabilityPage: React.FC = () => {
         availablePlaces
       }));
 
-      await bulkUpdateAvailabilities(updates);
+      await availabilityService.bulkUpdateAvailabilities(updates);
       showSuccess(t('carrier.availabilities.updateSuccess', 'Verfügbarkeiten erfolgreich aktualisiert'));
       fetchAvailabilities();
     } catch (error) {
@@ -146,7 +149,7 @@ const AvailabilityPage: React.FC = () => {
     setIsDeleting(true);
 
     try {
-      await deleteAvailability(availabilityToDelete.id.toString());
+      await availabilityService.deleteAvailability(availabilityToDelete.id.toString());
       showSuccess(t('carrier.availabilities.deleteSuccess', 'Verfügbarkeit erfolgreich gelöscht'));
       setShowDeleteConfirm(false);
       fetchAvailabilities();

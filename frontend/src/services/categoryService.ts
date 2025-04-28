@@ -101,7 +101,7 @@ export const deleteCategory = async (id: string): Promise<void> => {
   return api.delete(`/admin/categories/${id}`);
 };
 
-export default {
+export const categoryService = {
   getCategories,
   getAllCategories,
   getCategoryById,
@@ -109,3 +109,5 @@ export default {
   updateCategory,
   deleteCategory,
 };
+
+export default categoryService;

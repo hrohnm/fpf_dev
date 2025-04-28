@@ -61,17 +61,17 @@ export interface BulkUpdateResponse {
 export const getAvailabilities = async (filters: AvailabilityFilters = {}): Promise<AvailabilityListResponse> => {
   // Konvertiere Filter in Query-String
   const queryParams = new URLSearchParams();
-  
+
   if (filters.page) queryParams.append('page', filters.page.toString());
   if (filters.limit) queryParams.append('limit', filters.limit.toString());
   if (filters.facilityId) queryParams.append('facilityId', filters.facilityId);
   if (filters.categoryId) queryParams.append('categoryId', filters.categoryId);
   if (filters.sortBy) queryParams.append('sortBy', filters.sortBy);
   if (filters.sortOrder) queryParams.append('sortOrder', filters.sortOrder);
-  
+
   const queryString = queryParams.toString();
   const endpoint = `/carrier/availability${queryString ? `?${queryString}` : ''}`;
-  
+
   return api.get<AvailabilityListResponse>(endpoint);
 };
 
@@ -110,7 +110,7 @@ export const bulkUpdateAvailabilities = async (availabilities: BulkUpdateItem[])
   return api.put<BulkUpdateResponse>('/carrier/availability/bulk/update', { availabilities });
 };
 
-export default {
+export const availabilityService = {
   getAvailabilities,
   getAvailabilityById,
   createAvailability,
@@ -118,3 +118,5 @@ export default {
   deleteAvailability,
   bulkUpdateAvailabilities,
 };
+
+export default availabilityService;

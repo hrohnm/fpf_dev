@@ -7,6 +7,8 @@ const FacilityListPage = React.lazy(() => import('../pages/carrier/FacilityListP
 const FacilityFormPage = React.lazy(() => import('../pages/carrier/FacilityFormPage'));
 const AvailabilityPage = React.lazy(() => import('../pages/carrier/AvailabilityPage'));
 const StatisticsPage = React.lazy(() => import('../pages/carrier/StatisticsPage'));
+const PlacesPage = React.lazy(() => import('../pages/carrier/PlacesPage'));
+const PlaceManagementPage = React.lazy(() => import('../pages/carrier/PlaceManagementPage'));
 
 /**
  * Routes for the carrier role.
@@ -32,6 +34,16 @@ const CarrierRoutes: React.FC = () => {
       <Route path="facilities/:id" element={
         <React.Suspense fallback={<div>Loading...</div>}>
           <FacilityFormPage />
+        </React.Suspense>
+      } />
+      <Route path="places" element={
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <PlacesPage />
+        </React.Suspense>
+      } />
+      <Route path="facilities/:facilityId/places" element={
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <PlaceManagementPage />
         </React.Suspense>
       } />
       <Route path="availabilities" element={

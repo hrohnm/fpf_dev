@@ -42,7 +42,8 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({ children, title, breadcru
   // Navigation items for carrier
   const navigationItems = [
     { name: t('navigation.dashboard'), href: '/carrier', current: location.pathname === '/carrier' },
-    { name: t('navigation.facilities'), href: '/carrier/facilities', current: location.pathname.includes('/carrier/facilities') },
+    { name: t('navigation.facilities'), href: '/carrier/facilities', current: location.pathname.includes('/carrier/facilities') && !location.pathname.includes('/places') },
+    { name: t('navigation.places'), href: '/carrier/places', current: location.pathname.includes('/carrier/places') },
     { name: t('navigation.availabilities'), href: '/carrier/availabilities', current: location.pathname === '/carrier/availabilities' },
     { name: t('navigation.statistics'), href: '/carrier/statistics', current: location.pathname === '/carrier/statistics' },
   ];

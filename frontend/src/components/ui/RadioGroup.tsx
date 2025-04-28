@@ -12,7 +12,7 @@ interface RadioGroupProps {
   name?: string;
 }
 
-const RadioGroup: React.FC<RadioGroupProps> = ({ options, value, onChange, name = 'radio-group' }) => {
+export const RadioGroup: React.FC<RadioGroupProps> = ({ options, value, onChange, name = 'radio-group' }) => {
   return (
     <div className="flex flex-col space-y-2">
       {options.map((option) => (
