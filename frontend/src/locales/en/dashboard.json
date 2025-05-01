@@ -1,0 +1,15 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome, {name}!",
+  "facilities": "Facilities",
+  "availabilities": "Availabilities",
+  "statistics": "Statistics",
+  "recentUpdates": "Recent updates",
+  "quickActions": "Quick actions",
+  "viewAll": "View all",
+  "totalFacilities": "Total facilities",
+  "totalPlaces": "Total places",
+  "occupiedPlaces": "Occupied places",
+  "availablePlaces": "Available places",
+  "occupancyRate": "Occupancy rate"
+}

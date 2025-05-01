@@ -22,10 +22,10 @@ const fetchApi = async <T>(
   options: RequestInit = {}
 ): Promise<T> => {
   const url = `${API_URL}${endpoint}`;
-  
+
   try {
     const response = await fetch(url, options);
-    
+
     if (!response.ok) {
       // Try to parse error message from response
       try {
@@ -35,7 +35,7 @@ const fetchApi = async <T>(
         throw new Error(`API error: ${response.status}`);
       }
     }
-    
+
     // Check if response is empty
     const text = await response.text();
     return text ? JSON.parse(text) : {};
@@ -50,7 +50,7 @@ export const get = <T>(endpoint: string, authenticated = true): Promise<T> => {
   const headers = authenticated
     ? { ...defaultHeaders, ...getAuthHeaders() }
     : defaultHeaders;
-  
+
   return fetchApi<T>(endpoint, {
     method: 'GET',
     headers,
@@ -66,7 +66,7 @@ export const post = <T>(
   const headers = authenticated
     ? { ...defaultHeaders, ...getAuthHeaders() }
     : defaultHeaders;
-  
+
   return fetchApi<T>(endpoint, {
     method: 'POST',
     headers,
@@ -83,7 +83,7 @@ export const put = <T>(
   const headers = authenticated
     ? { ...defaultHeaders, ...getAuthHeaders() }
     : defaultHeaders;
-  
+
   return fetchApi<T>(endpoint, {
     method: 'PUT',
     headers,
@@ -96,10 +96,27 @@ export const del = <T>(endpoint: string, authenticated = true): Promise<T> => {
   const headers = authenticated
     ? { ...defaultHeaders, ...getAuthHeaders() }
     : defaultHeaders;
-  
+
   return fetchApi<T>(endpoint, {
     method: 'DELETE',
     headers,
+  });
+};
+
+// PATCH request
+export const patch = <T>(
+  endpoint: string,
+  data?: any,
+  authenticated = true
+): Promise<T> => {
+  const headers = authenticated
+    ? { ...defaultHeaders, ...getAuthHeaders() }
+    : defaultHeaders;
+
+  return fetchApi<T>(endpoint, {
+    method: 'PATCH',
+    headers,
+    body: data ? JSON.stringify(data) : undefined,
   });
 };
 
@@ -108,5 +125,6 @@ export default {
   get,
   post,
   put,
+  patch,
   delete: del,
 };

@@ -1,0 +1,16 @@
+{
+  "management": "Availability Management",
+  "places": "Places",
+  "hours": "Hours",
+  "facility": "Facility",
+  "category": "Category",
+  "noFacilities": "No facilities found",
+  "noSearchResults": "No facilities found matching your search criteria",
+  "filter": "Filter",
+  "search": "Search",
+  "overview": "Overview",
+  "details": "Details",
+  "loading": "Loading availabilities...",
+  "noData": "No availability data available",
+  "currentOccupancy": "Current occupancy: {{current}} of {{total}} places"
+}

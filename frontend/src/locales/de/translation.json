@@ -10,6 +10,7 @@
     "edit": "Bearbeiten",
     "view": "Ansehen",
     "search": "Suchen",
+    "searchFacilities": "Einrichtungen suchen...",
     "filter": "Filtern",
     "reset": "Zurücksetzen",
     "actions": "Aktionen",
@@ -35,7 +36,12 @@
     "showing": "Zeige",
     "to": "bis",
     "of": "von",
-    "results": "Ergebnissen"
+    "results": "Ergebnissen",
+    "select": "Auswählen",
+    "apply": "Anwenden",
+    "retry": "Erneut versuchen",
+    "expand": "Erweitern",
+    "collapse": "Einklappen"
   },
   "auth": {
     "login": "Anmelden",
@@ -79,9 +85,11 @@
     "logs": "Logs",
     "help": "Hilfe",
     "availabilities": "Verfügbarkeiten",
-    "places": "Plätze"
+    "places": "Plätze",
+    "resources": "Ressourcen"
   },
   "dashboard": {
+    "title": "Dashboard",
     "welcome": "Willkommen bei Freiplatzfinder",
     "totalFacilities": "Einrichtungen gesamt",
     "totalCarriers": "Träger gesamt",
@@ -258,7 +266,8 @@
       "description": "Hier können Sie Ihre Einrichtungen verwalten.",
       "new": "Neue Einrichtung",
       "edit": "Einrichtung bearbeiten",
-      "formDescription": "Hier können Sie die Details Ihrer Einrichtung bearbeiten."
+      "formDescription": "Hier können Sie die Details Ihrer Einrichtung bearbeiten.",
+      "noFacilities": "Keine Einrichtungen gefunden."
     },
     "availabilities": {
       "title": "Verfügbarkeiten",
@@ -401,7 +410,8 @@
     "changeGender": "Geschlecht ändern",
     "minAge": "Mindestalter",
     "maxAge": "Höchstalter",
-    "ageRange": "Alter: {{min}}-{{max}} Jahre",
+    "ageRange": "{{min}} - {{max}} Jahre",
+    "ageRangeTitle": "Altersbereich",
     "notes": "Notizen",
     "lastUpdated": "Zuletzt aktualisiert",
     "createSuccess": "Platz wurde erfolgreich erstellt.",
@@ -419,7 +429,100 @@
       "deleteFailed": "Fehler beim Löschen des Platzes.",
       "updateFailed": "Fehler beim Aktualisieren des Platzes.",
       "maxCapacityReached": "Die maximale Kapazität von {{maxCapacity}} Plätzen wurde erreicht.",
-      "selectFacility": "Bitte wählen Sie zuerst eine Einrichtung aus."
+      "selectFacility": "Bitte wählen Sie zuerst eine Einrichtung aus.",
+      "bulkCreateFailed": "Fehler beim Erstellen der Plätze."
+    },
+    "bulkCreate": {
+      "title": "Plätze automatisch erstellen",
+      "description": "Für die Einrichtung \"{facilityName}\" werden {count} Plätze erstellt (aktuell {currentCount} von {maxCapacity}). Bitte geben Sie die Parameter für alle zu erstellenden Plätze an.",
+      "submit": "Plätze erstellen",
+      "button": "Plätze automatisch erstellen",
+      "success": "{count} Plätze wurden erfolgreich erstellt"
+    }
+  },
+  "availability": {
+    "management": "Verfügbarkeitsverwaltung",
+    "places": "Plätze",
+    "hours": "Stunden",
+    "facility": "Einrichtung",
+    "category": "Kategorie",
+    "noFacilities": "Keine Einrichtungen gefunden",
+    "noSearchResults": "Keine Einrichtungen gefunden, die Ihren Suchkriterien entsprechen",
+    "filter": "Filter",
+    "search": "Suche",
+    "overview": "Übersicht",
+    "details": "Details",
+    "loading": "Lade Verfügbarkeiten...",
+    "noData": "Keine Verfügbarkeitsdaten vorhanden",
+    "currentOccupancy": "Aktuelle Belegung: {{current}} von {{total}} Plätzen"
+  },
+  "resource": {
+    "management": "Ressourcenverwaltung",
+    "places": "Plätze",
+    "hours": "Stunden",
+    "list": "Ressourcenliste",
+    "capacityInfo": "Aktuelle Belegung: {{current}} von {{max}} Plätzen",
+    "addPlace": "Platz hinzufügen",
+    "addHours": "Stunden hinzufügen",
+    "editPlace": "Platz bearbeiten",
+    "editHours": "Stunden bearbeiten",
+    "deleteTitle": "Ressource löschen",
+    "deleteMessage": "Sind Sie sicher, dass Sie die Ressource {{name}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "name": "Name",
+    "category": "Kategorie",
+    "status": "Status",
+    "occupied": "Belegt",
+    "available": "Frei",
+    "markOccupied": "Als belegt markieren",
+    "markAvailable": "Als frei markieren",
+    "totalHours": "Gesamtstunden",
+    "availableHours": "Verfügbare Stunden",
+    "updateAvailableHours": "Stunden aktualisieren",
+    "availabilityHours": "{{available}}/{{total}} ({{percentage}}%)",
+    "hoursUpdated": "Stunden wurden aktualisiert",
+    "minAvailableHours": "Min. verfügbare Stunden",
+    "genderSuitability": {
+      "label": "Geschlechtereignung",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "all": "Alle"
+    },
+    "changeGender": "Geschlecht ändern",
+    "minAge": "Mindestalter",
+    "maxAge": "Höchstalter",
+    "ageRange": "Alter: {{min}}-{{max}} Jahre",
+    "notes": "Notizen",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "createSuccess": "Ressource wurde erfolgreich erstellt.",
+    "updateSuccess": "Ressource wurde erfolgreich aktualisiert.",
+    "deleteSuccess": "Ressource wurde erfolgreich gelöscht.",
+    "markedOccupied": "Platz wurde als belegt markiert.",
+    "markedAvailable": "Platz wurde als frei markiert.",
+    "genderSuitabilityUpdated": "Geschlechtereignung wurde aktualisiert.",
+    "noPlaces": "Keine Plätze gefunden.",
+    "noHours": "Keine Stunden gefunden.",
+    "noFilterResults": "Keine Ressourcen gefunden, die den Filterkriterien entsprechen.",
+    "count": "Anzahl",
+    "maxCount": "Maximal {{max}} Plätze möglich",
+    "errors": {
+      "loadFailed": "Fehler beim Laden der Ressourcen.",
+      "saveFailed": "Fehler beim Speichern der Ressource.",
+      "deleteFailed": "Fehler beim Löschen der Ressource.",
+      "updateFailed": "Fehler beim Aktualisieren der Ressource.",
+      "maxCapacityReached": "Die maximale Kapazität von {{maxCapacity}} Plätzen wurde erreicht.",
+      "selectFacility": "Bitte wählen Sie zuerst eine Einrichtung aus.",
+      "bulkCreateFailed": "Fehler beim Erstellen der Ressourcen."
+    },
+    "bulkCreate": {
+      "titlePlaces": "Plätze automatisch erstellen",
+      "titleHours": "Stunden hinzufügen",
+      "descriptionPlaces": "Für die Einrichtung \"{{facilityName}}\" werden {{count}} Plätze erstellt (aktuell {{currentCount}} von {{maxCapacity}}). Bitte geben Sie die Parameter für alle zu erstellenden Plätze an.",
+      "descriptionHours": "Für die Einrichtung \"{{facilityName}}\" werden Stunden hinzugefügt. Bitte geben Sie die Parameter an.",
+      "submit": "Erstellen",
+      "buttonPlaces": "Plätze automatisch erstellen",
+      "buttonHours": "Stunden hinzufügen",
+      "successPlaces": "{{count}} Plätze wurden erfolgreich erstellt",
+      "successHours": "Stunden wurden erfolgreich hinzugefügt"
     }
   }
 }

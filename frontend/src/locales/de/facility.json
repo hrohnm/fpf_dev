@@ -1,0 +1,31 @@
+{
+  "management": "Einrichtungsverwaltung",
+  "list": "Einrichtungsliste",
+  "new": "Neue Einrichtung",
+  "edit": "Einrichtung bearbeiten",
+  "details": "Einrichtungsdetails",
+  "name": "Name",
+  "description": "Beschreibung",
+  "contactPerson": "Ansprechpartner",
+  "email": "E-Mail",
+  "phone": "Telefon",
+  "address": "Adresse",
+  "city": "Stadt",
+  "postalCode": "PLZ",
+  "openingHours": "Öffnungszeiten",
+  "maxCapacity": "Maximale Kapazität",
+  "isActive": "Aktiv",
+  "createSuccess": "Einrichtung erfolgreich erstellt",
+  "createError": "Fehler beim Erstellen der Einrichtung",
+  "updateSuccess": "Einrichtung erfolgreich aktualisiert",
+  "updateError": "Fehler beim Aktualisieren der Einrichtung",
+  "deleteSuccess": "Einrichtung erfolgreich gelöscht",
+  "deleteError": "Fehler beim Löschen der Einrichtung",
+  "deleteTitle": "Einrichtung löschen",
+  "deleteMessage": "Sind Sie sicher, dass Sie die Einrichtung \"{name}\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "noFacilities": "Keine Einrichtungen vorhanden",
+  "noSearchResults": "Keine Einrichtungen gefunden, die Ihren Suchkriterien entsprechen",
+  "errors": {
+    "loadFailed": "Fehler beim Laden der Einrichtungen"
+  }
+}

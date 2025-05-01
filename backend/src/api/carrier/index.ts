@@ -7,6 +7,8 @@ import imagesRoutes from './images.routes';
 import statisticsRoutes from './statistics.routes';
 import dashboardRoutes from './dashboard.routes';
 import categoryRoutes from './category.routes';
+import placeRoutes from './place.routes';
+import hourRoutes from './hour.routes';
 
 const router = Router();
 
@@ -20,5 +22,7 @@ router.use('/availability', availabilityRoutes);
 router.use('/images', imagesRoutes);
 router.use('/statistics', statisticsRoutes);
 router.use('/categories', categoryRoutes);
+router.use('/places', placeRoutes);
+router.use('/hours', hourRoutes);
 
 export default router;

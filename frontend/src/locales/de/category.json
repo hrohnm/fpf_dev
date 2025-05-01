@@ -1,0 +1,25 @@
+{
+  "management": "Kategorieverwaltung",
+  "list": "Kategorieliste",
+  "new": "Neue Kategorie",
+  "edit": "Kategorie bearbeiten",
+  "name": "Name",
+  "description": "Beschreibung",
+  "parent": "Übergeordnete Kategorie",
+  "unitType": "Einheitstyp",
+  "unitType.places": "Plätze",
+  "unitType.hours": "Stunden",
+  "createSuccess": "Kategorie erfolgreich erstellt",
+  "createError": "Fehler beim Erstellen der Kategorie",
+  "updateSuccess": "Kategorie erfolgreich aktualisiert",
+  "updateError": "Fehler beim Aktualisieren der Kategorie",
+  "deleteSuccess": "Kategorie erfolgreich gelöscht",
+  "deleteError": "Fehler beim Löschen der Kategorie",
+  "deleteTitle": "Kategorie löschen",
+  "deleteMessage": "Sind Sie sicher, dass Sie die Kategorie \"{name}\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "noCategories": "Keine Kategorien vorhanden",
+  "noSearchResults": "Keine Kategorien gefunden, die Ihren Suchkriterien entsprechen",
+  "errors": {
+    "loadFailed": "Fehler beim Laden der Kategorien"
+  }
+}

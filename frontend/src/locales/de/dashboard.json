@@ -1,0 +1,15 @@
+{
+  "title": "Dashboard",
+  "welcome": "Willkommen, {name}!",
+  "facilities": "Einrichtungen",
+  "availabilities": "Verfügbarkeiten",
+  "statistics": "Statistiken",
+  "recentUpdates": "Letzte Aktualisierungen",
+  "quickActions": "Schnellaktionen",
+  "viewAll": "Alle anzeigen",
+  "totalFacilities": "Gesamtzahl Einrichtungen",
+  "totalPlaces": "Gesamtzahl Plätze",
+  "occupiedPlaces": "Belegte Plätze",
+  "availablePlaces": "Verfügbare Plätze",
+  "occupancyRate": "Belegungsrate"
+}

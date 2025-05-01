@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Place } from '../../services/placeService';
+import { Hour } from '../../services/hourService';
 import { Category } from '../../types/carrier.types';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -8,51 +8,52 @@ import { TextArea } from '../ui/TextArea';
 import { Select } from '../ui/Select';
 import { RadioGroup } from '../ui/RadioGroup';
 
-interface PlaceFormProps {
-  place?: Partial<Place>;
+interface HourFormProps {
+  hour?: Partial<Hour>;
   categories: Category[];
   facilityId: string;
-  maxCapacity: number;
-  currentPlacesCount: number;
-  onSubmit: (place: Partial<Place>) => void;
+  onSubmit: (hour: Partial<Hour>) => void;
   onCancel: () => void;
 }
 
-const PlaceForm: React.FC<PlaceFormProps> = ({
-  place,
+const HourForm: React.FC<HourFormProps> = ({
+  hour,
   categories,
   facilityId,
-  maxCapacity,
-  currentPlacesCount,
   onSubmit,
   onCancel,
 }) => {
-  const { t } = useTranslation(['translation', 'place']);
-  const isEditing = !!place?.id;
-  const canAddPlace = isEditing || currentPlacesCount < maxCapacity;
+  const { t } = useTranslation();
+  const isEditing = !!hour?.id;
 
-  const [formData, setFormData] = useState<Partial<Place>>({
+  // Filter categories to only show those with unitType 'hours'
+  const hourCategories = categories.filter(cat => cat.unitType === 'hours');
+
+  const [formData, setFormData] = useState<Partial<Hour>>({
     facilityId,
     categoryId: '',
     name: '',
-    isOccupied: false,
+    totalHours: 40,
+    availableHours: 40,
     genderSuitability: 'all',
     minAge: 0,
     maxAge: 27,
     notes: '',
-    ...place,
+    ...hour,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-
+    
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'minAge' || name === 'maxAge' ? parseInt(value) : value,
+      [name]: name === 'minAge' || name === 'maxAge' || name === 'totalHours' || name === 'availableHours' 
+        ? parseInt(value) 
+        : value,
     }));
-
+    
     // Clear error for this field
     if (errors[name]) {
       setErrors(prev => {
@@ -68,7 +69,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
       ...prev,
       [name]: value,
     }));
-
+    
     // Clear error for this field
     if (errors[name]) {
       setErrors(prev => {
@@ -88,37 +89,44 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-
+    
     if (!formData.name) {
       newErrors.name = t('validation.required');
     }
-
+    
     if (!formData.categoryId) {
       newErrors.categoryId = t('validation.required');
     }
-
+    
+    if (formData.totalHours === undefined || formData.totalHours <= 0) {
+      newErrors.totalHours = t('validation.positive');
+    }
+    
+    if (formData.availableHours === undefined || formData.availableHours < 0) {
+      newErrors.availableHours = t('validation.nonNegative');
+    }
+    
+    if (formData.availableHours !== undefined && 
+        formData.totalHours !== undefined && 
+        formData.availableHours > formData.totalHours) {
+      newErrors.availableHours = t('validation.availableLessThanTotal');
+    }
+    
     if (formData.minAge === undefined || formData.minAge < 0) {
       newErrors.minAge = t('validation.minAge');
     }
-
+    
     if (formData.maxAge === undefined || formData.maxAge < formData.minAge!) {
       newErrors.maxAge = t('validation.maxAgeThanMin');
     }
-
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!canAddPlace && !isEditing) {
-      setErrors({
-        form: t('place.errors.maxCapacityReached', { maxCapacity }),
-      });
-      return;
-    }
-
+    
     if (validateForm()) {
       onSubmit(formData);
     }
@@ -128,7 +136,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-          {t('place:name')} *
+          {t('hour.name')} *
         </label>
         <Input
           id="name"
@@ -142,7 +150,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
 
       <div>
         <label htmlFor="categoryId" className="block text-sm font-medium text-gray-700">
-          {t('place:category')} *
+          {t('hour.category')} *
         </label>
         <Select
           id="categoryId"
@@ -153,7 +161,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
           required
         >
           <option value="">{t('common.select')}</option>
-          {categories.map((category) => (
+          {hourCategories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
             </option>
@@ -161,18 +169,52 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
         </Select>
       </div>
 
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="totalHours" className="block text-sm font-medium text-gray-700">
+            {t('hour.totalHours')} *
+          </label>
+          <Input
+            id="totalHours"
+            name="totalHours"
+            type="number"
+            min={1}
+            value={formData.totalHours}
+            onChange={handleChange}
+            error={errors.totalHours}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="availableHours" className="block text-sm font-medium text-gray-700">
+            {t('hour.availableHours')} *
+          </label>
+          <Input
+            id="availableHours"
+            name="availableHours"
+            type="number"
+            min={0}
+            max={formData.totalHours}
+            value={formData.availableHours}
+            onChange={handleChange}
+            error={errors.availableHours}
+            required
+          />
+        </div>
+      </div>
+
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          {t('place.genderSuitability')} *
+          {t('hour.genderSuitability')} *
         </label>
         <RadioGroup
           name="genderSuitability"
           value={formData.genderSuitability}
           onChange={(value) => handleRadioChange('genderSuitability', value)}
           options={[
-            { value: 'male', label: t('place.genderSuitability.male') },
-            { value: 'female', label: t('place.genderSuitability.female') },
-            { value: 'all', label: t('place.genderSuitability.all') },
+            { value: 'male', label: t('hour.genderSuitability.male') },
+            { value: 'female', label: t('hour.genderSuitability.female') },
+            { value: 'all', label: t('hour.genderSuitability.all') },
           ]}
         />
       </div>
@@ -180,7 +222,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="minAge" className="block text-sm font-medium text-gray-700">
-            {t('place.minAge')} *
+            {t('hour.minAge')} *
           </label>
           <Input
             id="minAge"
@@ -196,7 +238,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
         </div>
         <div>
           <label htmlFor="maxAge" className="block text-sm font-medium text-gray-700">
-            {t('place.maxAge')} *
+            {t('hour.maxAge')} *
           </label>
           <Input
             id="maxAge"
@@ -214,7 +256,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
 
       <div>
         <label htmlFor="notes" className="block text-sm font-medium text-gray-700">
-          {t('place.notes')}
+          {t('hour.notes')}
         </label>
         <TextArea
           id="notes"
@@ -241,7 +283,6 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
         </Button>
         <Button
           type="submit"
-          disabled={!canAddPlace && !isEditing}
         >
           {isEditing ? t('common.save') : t('common.create')}
         </Button>
@@ -250,4 +291,4 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   );
 };
 
-export default PlaceForm;
+export default HourForm;

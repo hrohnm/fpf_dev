@@ -7,6 +7,7 @@ import { FacilityImage } from './facility-image.model';
 import { Category } from './category.model';
 import { Availability } from './availability.model';
 import { Place } from './place.model';
+import { Hour } from './hour.model';
 import { SavedFilter } from './saved-filter.model';
 import { Favorite } from './favorite.model';
 import { SystemLog } from './system-log.model';
@@ -103,6 +104,28 @@ Place.belongsTo(Category, {
   as: 'category',
 });
 
+// Facility - Hour (one-to-many)
+Facility.hasMany(Hour, {
+  foreignKey: 'facilityId',
+  as: 'hours',
+});
+
+Hour.belongsTo(Facility, {
+  foreignKey: 'facilityId',
+  as: 'facility',
+});
+
+// Category - Hour (one-to-many)
+Category.hasMany(Hour, {
+  foreignKey: 'categoryId',
+  as: 'hours',
+});
+
+Hour.belongsTo(Category, {
+  foreignKey: 'categoryId',
+  as: 'category',
+});
+
 // User - SavedFilter (one-to-many)
 User.hasMany(SavedFilter, {
   foreignKey: 'userId',
@@ -157,6 +180,7 @@ export {
   Category,
   Availability,
   Place,
+  Hour,
   SavedFilter,
   Favorite,
   SystemLog,

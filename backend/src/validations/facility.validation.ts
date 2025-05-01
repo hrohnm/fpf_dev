@@ -1,7 +1,16 @@
 import Joi from 'joi';
 
-// Facility ID validation schema
+// Facility ID validation schema for URL parameter facilityId
 export const facilityIdSchema = Joi.object({
+  facilityId: Joi.string().uuid().required().messages({
+    'string.guid': 'Ungültige Einrichtungs-ID',
+    'string.empty': 'Einrichtungs-ID ist erforderlich',
+    'any.required': 'Einrichtungs-ID ist erforderlich',
+  }),
+});
+
+// Facility ID validation schema for URL parameter id
+export const facilityIdParamSchema = Joi.object({
   id: Joi.string().uuid().required().messages({
     'string.guid': 'Ungültige Einrichtungs-ID',
     'string.empty': 'Einrichtungs-ID ist erforderlich',

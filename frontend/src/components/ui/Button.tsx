@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'success' | 'text';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -28,9 +28,12 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: 'border-transparent text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-secondary-500',
     outline: 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-primary-500',
     danger: 'border-transparent text-white bg-red-600 hover:bg-red-700 focus:ring-red-500',
+    success: 'border-transparent text-white bg-green-600 hover:bg-green-700 focus:ring-green-500',
+    text: 'border-transparent text-gray-700 bg-transparent hover:bg-gray-100 focus:ring-primary-500',
   };
 
   const sizeClasses = {
+    xs: 'px-2 py-1 text-xs',
     sm: 'px-3 py-1.5 text-xs',
     md: 'px-4 py-2 text-sm',
     lg: 'px-6 py-3 text-base',

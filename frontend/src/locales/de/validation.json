@@ -1,0 +1,9 @@
+{
+  "required": "Dieses Feld ist erforderlich",
+  "minAge": "Das Mindestalter muss größer oder gleich 0 sein",
+  "maxAgeThanMin": "Das Höchstalter muss größer als das Mindestalter sein",
+  "positive": "Dieser Wert muss größer als 0 sein",
+  "nonNegative": "Dieser Wert muss größer oder gleich 0 sein",
+  "availableLessThanTotal": "Die verfügbaren Stunden dürfen nicht größer als die Gesamtstunden sein",
+  "maxCount": "Maximal {max} Plätze möglich"
+}

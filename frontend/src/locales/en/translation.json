@@ -28,7 +28,9 @@
     "noData": "No data available",
     "details": "Details",
     "more": "More",
-    "less": "Less"
+    "less": "Less",
+    "expand": "Expand",
+    "collapse": "Collapse"
   },
   "auth": {
     "login": "Login",
@@ -69,7 +71,8 @@
     "reports": "Reports",
     "statistics": "Statistics",
     "logs": "Logs",
-    "help": "Help"
+    "help": "Help",
+    "availabilities": "Availabilities"
   },
   "dashboard": {
     "welcome": "Welcome to Freiplatzfinder",
@@ -80,6 +83,22 @@
     "recentUpdates": "Recent updates",
     "quickSearch": "Quick search",
     "quickLinks": "Quick links"
+  },
+  "availability": {
+    "management": "Availability Management",
+    "places": "Places",
+    "hours": "Hours",
+    "facility": "Facility",
+    "category": "Category",
+    "noFacilities": "No facilities found",
+    "noSearchResults": "No facilities found matching your search criteria",
+    "filter": "Filter",
+    "search": "Search",
+    "overview": "Overview",
+    "details": "Details",
+    "loading": "Loading availabilities...",
+    "noData": "No availability data available",
+    "currentOccupancy": "Current occupancy: {{current}} of {{total}} places"
   },
   "search": {
     "searchPlaceholder": "Search for facilities, carriers, categories...",

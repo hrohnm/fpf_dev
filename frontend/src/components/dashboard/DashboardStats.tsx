@@ -190,8 +190,8 @@ const DashboardStats: React.FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {data.recentUpdates.map((update) => (
-                <tr key={update.facilityId}>
+              {data.recentUpdates.map((update, index) => (
+                <tr key={`${update.facilityId}-${update.categoryId}-${index}`}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {update.facilityName}
                   </td>

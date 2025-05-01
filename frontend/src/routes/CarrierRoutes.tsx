@@ -5,10 +5,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 const CarrierDashboardPage = React.lazy(() => import('../pages/carrier/CarrierDashboardPage'));
 const FacilityListPage = React.lazy(() => import('../pages/carrier/FacilityListPage'));
 const FacilityFormPage = React.lazy(() => import('../pages/carrier/FacilityFormPage'));
-const AvailabilityPage = React.lazy(() => import('../pages/carrier/AvailabilityPage'));
+const AvailabilityManagementPage = React.lazy(() => import('../pages/carrier/AvailabilityManagementPage'));
 const StatisticsPage = React.lazy(() => import('../pages/carrier/StatisticsPage'));
-const PlacesPage = React.lazy(() => import('../pages/carrier/PlacesPage'));
-const PlaceManagementPage = React.lazy(() => import('../pages/carrier/PlaceManagementPage'));
 
 /**
  * Routes for the carrier role.
@@ -36,19 +34,10 @@ const CarrierRoutes: React.FC = () => {
           <FacilityFormPage />
         </React.Suspense>
       } />
-      <Route path="places" element={
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <PlacesPage />
-        </React.Suspense>
-      } />
-      <Route path="facilities/:facilityId/places" element={
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <PlaceManagementPage />
-        </React.Suspense>
-      } />
+
       <Route path="availabilities" element={
         <React.Suspense fallback={<div>Loading...</div>}>
-          <AvailabilityPage />
+          <AvailabilityManagementPage />
         </React.Suspense>
       } />
       <Route path="statistics" element={

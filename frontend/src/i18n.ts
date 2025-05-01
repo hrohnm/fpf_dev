@@ -4,14 +4,22 @@ import { initReactI18next } from 'react-i18next';
 // Import translations
 import translationDE from './locales/de/translation.json';
 import translationEN from './locales/en/translation.json';
+import availabilityDE from './locales/de/availability.json';
+import availabilityEN from './locales/en/availability.json';
+import placeDE from './locales/de/place.json';
+import placeEN from './locales/en/place.json';
 
 // the translations
 const resources = {
   de: {
-    translation: translationDE
+    translation: translationDE,
+    availability: availabilityDE,
+    place: placeDE
   },
   en: {
-    translation: translationEN
+    translation: translationEN,
+    availability: availabilityEN,
+    place: placeEN
   }
 };
 

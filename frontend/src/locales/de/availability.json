@@ -1,0 +1,16 @@
+{
+  "management": "Verfügbarkeitsverwaltung",
+  "places": "Plätze",
+  "hours": "Stunden",
+  "facility": "Einrichtung",
+  "category": "Kategorie",
+  "noFacilities": "Keine Einrichtungen gefunden",
+  "noSearchResults": "Keine Einrichtungen gefunden, die Ihren Suchkriterien entsprechen",
+  "filter": "Filter",
+  "search": "Suche",
+  "overview": "Übersicht",
+  "details": "Details",
+  "loading": "Lade Verfügbarkeiten...",
+  "noData": "Keine Verfügbarkeitsdaten vorhanden",
+  "currentOccupancy": "Aktuelle Belegung: {{current}} von {{total}} Plätzen"
+}
